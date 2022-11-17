@@ -1,3 +1,4 @@
+
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -7,6 +8,16 @@ class Mentor:
         
 
 class Lecturer(Mentor):
+	def __gt__(self, other):
+		return self.to_compare > other.to_compare
+
+	def __lt__(self, other):
+		return self.to_compare < other.to_compare
+
+	def __eq__(self, other):
+		return self.to_compare == other.to_compare
+
+
 	def to_compare(self):
 		try:
 			gr = 0
@@ -27,6 +38,15 @@ class Lecturer(Mentor):
 			
 
 class Reviewer(Mentor):
+	def __gt__(self, other):
+		return self.to_compare > other.to_compare
+
+	def __lt__(self, other):
+		return self.to_compare < other.to_compare
+
+	def __eq__(self, other):
+		return self.to_compare == other.to_compare
+
 	def hw_rate(self, student, course, grade):
 		if isinstance(student, Student) and course in student.courses_in_progress:
 			if course in student.grades:
@@ -45,6 +65,15 @@ class Reviewer(Mentor):
 
 
 class Student:
+	def __gt__(self, other):
+		return self.to_compare > other.to_compare
+
+	def __lt__(self, other):
+		return self.to_compare < other.to_compare
+
+	def __eq__(self, other):
+		return self.to_compare == other.to_compare
+		
 	def __init__(self, name, surname, gender):
 		self.name = name
 		self.surname = surname
@@ -66,7 +95,7 @@ class Student:
 
 
 	def cruel_rate(self, victim, course, grade):
-		if course in self.courses_in_progress and course in victim.courses_attached:
+		if course in self.courses_in_progress:
 			if course in victim.courses_attached:
 				if course in victim.grades:
 					victim.grades[course] += [grade]
